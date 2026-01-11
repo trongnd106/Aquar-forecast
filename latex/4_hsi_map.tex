@@ -1,0 +1,276 @@
+\section{Xây dựng bộ chỉ số phù hợp sinh học và bản đồ vùng nuôi}
+\subsection{Công thức tính mức độ phù hợp sinh học (HSI)}
+\subsubsection{Chỉ số phù hợp sinh cảnh (Habitat Suitability Index -- HSI)}
+
+Chỉ số phù hợp sinh cảnh (Habitat Suitability Index -- HSI) là một chỉ số tổng hợp được sử dụng rộng rãi trong các nghiên cứu sinh thái nhằm đánh giá mức độ phù hợp của điều kiện môi trường đối với sự sinh trưởng và phát triển của một loài sinh vật cụ thể. Trong lĩnh vực nuôi trồng thủy sản và quản lý môi trường nước, chỉ số HSI và các chỉ số tương tự đã được áp dụng trong nhiều báo cáo và nghiên cứu của các tổ chức quốc tế như Tổ chức Lương thực và Nông nghiệp Liên Hợp Quốc (Food and Agriculture Organization -- FAO) và các chương trình đánh giá môi trường ven biển. 
+
+Trong nghiên cứu này, chỉ số HSI được sử dụng để đánh giá mức độ phù hợp của môi trường nước đối với hai đối tượng nuôi trồng thủy sản là hàu (oyster) và cá giò (cobia), dựa trên các yếu tố môi trường và kim loại nặng được dự báo.
+
+\subsubsection{Nguyên tắc xây dựng chỉ số HSI}
+
+Việc xây dựng chỉ số HSI trong nghiên cứu được thực hiện theo hướng tiếp cận dựa trên luật (rule-based), trong đó mỗi biến môi trường được ánh xạ thành một điểm phù hợp sinh học (suitability score) trong khoảng từ 0 đến 1. Giá trị 1 biểu thị điều kiện tối ưu cho loài, trong khi giá trị 0 biểu thị điều kiện hoàn toàn không phù hợp.
+
+Đối với mỗi loài, một tập các ngưỡng sinh học đặc trưng được xác định, bao gồm:
+\begin{itemize}
+    \item Khoảng giá trị tối ưu (\textit{optimal range}) đối với các biến có giá trị thích hợp nằm trong một khoảng nhất định (ví dụ: nhiệt độ, pH, độ mặn).
+    \item Ngưỡng tối đa cho phép đối với các biến mà nồng độ càng thấp càng tốt (ví dụ: NH$_3$, H$_2$S, kim loại nặng).
+    \item Ngưỡng tối thiểu yêu cầu đối với các biến mà giá trị càng cao càng có lợi (ví dụ: oxy hòa tan).
+\end{itemize}
+
+Các ngưỡng này được lựa chọn dựa trên tài liệu sinh học và các tiêu chuẩn môi trường liên quan đến nuôi trồng hàu và cá giò.
+
+\subsubsection{Hàm đánh giá mức độ phù hợp cho từng biến}
+
+Với mỗi biến môi trường $x$, điểm phù hợp sinh học $S(x)$ được tính toán theo các quy tắc sau:
+
+\begin{itemize}
+    \item \textbf{Biến có khoảng tối ưu} $(x \in [L, H])$:
+    \[
+    S(x) =
+    \begin{cases}
+        \frac{x}{L}, & x < L \\
+        1,           & L \le x \le H \\
+        \frac{2H - x}{H}, & x > H
+    \end{cases}
+    \]
+    \item \textbf{Biến có ngưỡng tối đa} $(x \le M)$:
+    \[
+    S(x) = \max\left(0, 1 - \frac{x}{M}\right)
+    \]
+    \item \textbf{Biến có ngưỡng tối thiểu} $(x \ge m)$:
+    \[
+    S(x) = \min\left(1, \frac{x}{m}\right)
+    \]
+\end{itemize}
+
+Trong trường hợp giá trị của biến bị thiếu hoặc không hợp lệ, điểm phù hợp sinh học của biến đó được gán bằng 0 nhằm phản ánh mức độ không chắc chắn và tránh làm tăng giả tạo chỉ số HSI tổng thể.
+
+\subsubsection{Tính toán chỉ số HSI tổng hợp}
+
+Đối với mỗi bản ghi dự báo tại một trạm và một thời điểm, chỉ số HSI tổng hợp được tính bằng trung bình cộng của các điểm phù hợp sinh học của tất cả các biến được xem xét:
+\[
+\mathrm{HSI} = \frac{1}{N} \sum_{i=1}^{N} S_i
+\]
+trong đó $S_i$ là điểm phù hợp sinh học của biến thứ $i$, và $N$ là số lượng biến môi trường và kim loại nặng được sử dụng trong quá trình đánh giá.
+
+Cách tiếp cận này cho phép mỗi biến đóng góp một cách đồng đều vào chỉ số HSI, đồng thời giúp đơn giản hóa quá trình tổng hợp và diễn giải kết quả.
+
+\subsubsection{Phân loại mức độ phù hợp sinh cảnh}
+
+Dựa trên giá trị HSI thu được, mức độ phù hợp sinh cảnh được phân loại thành bốn mức:
+\begin{itemize}
+    \item $\mathrm{HSI} \ge 0.85$: Rất phù hợp
+    \item $0.75 \le \mathrm{HSI} < 0.85$: Phù hợp
+    \item $0.50 \le \mathrm{HSI} < 0.75$: Ít phù hợp
+    \item $\mathrm{HSI} < 0.50$: Không phù hợp
+\end{itemize}
+
+Ngưỡng phân loại HSI được lựa chọn theo hướng tham khảo các thực hành phổ biến trong các nghiên cứu sinh thái và báo cáo quản lý môi trường, đồng thời được điều chỉnh cho phù hợp với đặc thù dữ liệu và đối tượng nuôi trồng. Việc sử dụng bốn mức phân loại cho phép phản ánh rõ ràng sự khác biệt về mức độ phù hợp sinh cảnh, từ các khu vực có điều kiện môi trường tối ưu cho nuôi trồng đến các khu vực tiềm ẩn rủi ro sinh thái.
+Việc phân loại này giúp chuyển đổi các giá trị HSI liên tục thành các mức đánh giá trực quan, thuận tiện cho việc phân tích không gian, so sánh giữa các khu vực và hỗ trợ ra quyết định trong quản lý và quy hoạch vùng nuôi trồng thủy sản.
+
+
+\subsection{Xác định phạm vi áp dụng của kết quả dự đoán}
+
+\subsubsection{Nguyên tắc xác định bán kính ảnh hưởng}
+
+Việc xác định bán kính ảnh hưởng dựa trên giả thiết rằng các trạm có vị trí địa lý gần nhau sẽ có điều kiện sinh thái tương đồng hơn so với các trạm ở xa. Mức độ tương đồng sinh thái được đo lường thông qua chỉ số phù hợp sinh cảnh (HSI). Khi khoảng cách giữa hai trạm tăng lên, độ chênh lệch HSI giữa chúng có xu hướng tăng, phản ánh sự suy giảm tương đồng sinh thái theo không gian.
+
+Đối với mỗi trạm trung tâm \(i\) tại một quý xác định, nghiên cứu xem xét tất cả các trạm còn lại \(j\) trong cùng quý và tính:
+\begin{itemize}
+    \item Khoảng cách không gian \(d_{ij}\) giữa hai trạm, được tính từ tọa độ phẳng VN2000 theo công thức Euclid:
+    \[
+    d_{ij} = \frac{\sqrt{(x_i - x_j)^2 + (y_i - y_j)^2}}{1000}
+    \]
+    trong đó \(x, y\) là tọa độ theo đơn vị mét và \(d_{ij}\) được quy đổi sang kilômét.
+    \item Độ chênh lệch sinh thái giữa hai trạm:
+    \[
+    \Delta HSI_{ij} = |HSI_i - HSI_j|
+    \]
+\end{itemize}
+
+\subsubsection{Phân tích suy giảm tương đồng theo khoảng cách}
+
+Các cặp trạm \((i, j)\) được gom theo các khoảng cách rời rạc (bins) với độ rộng cố định, trong nghiên cứu này là 1~km. Với mỗi khoảng cách \(h\), giá trị độ chênh lệch HSI trung bình được tính như sau:
+\[
+\overline{\Delta HSI}(h) = \frac{1}{N(h)} \sum_{d_{ij} \in h} \Delta HSI_{ij}
+\]
+trong đó \(N(h)\) là số cặp trạm có khoảng cách nằm trong khoảng \(h\).
+
+Việc gom theo khoảng cách giúp làm trơn dữ liệu, giảm ảnh hưởng của nhiễu cục bộ và phản ánh xu hướng chung của sự suy giảm tương đồng sinh thái theo không gian.
+
+\subsubsection{Ngưỡng xác định mất tương đồng sinh thái}
+
+Thay vì sử dụng một ngưỡng cố định cho mọi trường hợp, nghiên cứu áp dụng ngưỡng động dựa trên độ phân tán của HSI trong từng quý. Cụ thể, ngưỡng chênh lệch sinh thái được xác định là:
+\[
+\Delta HSI_{\text{threshold}} = 0.1 \times \sigma_{\text{HSI}}
+\]
+trong đó \(\sigma_{\text{HSI}}\) là độ lệch chuẩn của chỉ số HSI của tất cả các trạm trong cùng quý. Cách tiếp cận này cho phép ngưỡng thích nghi với mức độ biến thiên thực tế của dữ liệu, đặc biệt trong trường hợp HSI có phân phối hẹp và ít biến động.
+
+\subsubsection{Xác định bán kính ảnh hưởng \(R\)}
+
+Bán kính ảnh hưởng không gian của trạm \(i\) tại quý đang xét được xác định là khoảng cách nhỏ nhất \(R_i\) sao cho:
+\[
+\overline{\Delta HSI}(R_i) \ge \Delta HSI_{\text{threshold}}
+\]
+
+Nói cách khác, \(R_i\) là mốc khoảng cách mà tại đó mức độ khác biệt sinh thái trung bình giữa trạm trung tâm và các trạm xung quanh vượt quá ngưỡng cho phép, cho thấy môi trường không còn tương đồng sinh thái với trạm trung tâm.
+
+Trong trường hợp không tồn tại khoảng cách nào thỏa mãn điều kiện trên trong phạm vi khảo sát (tối đa 50~km), bán kính ảnh hưởng được gán bằng giá trị cực đại này. Điều này phản ánh rằng trong phạm vi nghiên cứu, điều kiện sinh thái được dự báo là tương đối đồng nhất theo không gian.
+
+Quy trình trên được áp dụng độc lập cho từng quý và từng trạm quan trắc. Kết quả là một tập hợp các bán kính ảnh hưởng \(R_{i,t}\) cho mỗi trạm \(i\) tại từng quý \(t\). Cách tiếp cận này cho phép phản ánh tính không đồng nhất theo không gian và sự biến động theo thời gian của điều kiện môi trường, đồng thời cung cấp cơ sở định lượng để biểu diễn vùng đại diện không gian của kết quả dự báo trên bản đồ.
+
+
+\subsection{Thiết kế dashboard và bản đồ dự báo vùng nuôi trồng}
+
+\subsubsection{Kiến trúc tổng thể của hệ thống Dashboard}
+
+Để chuyển đổi các kết quả dự báo từ mô hình học máy thành công cụ hỗ trợ quyết định thực tiễn cho người nuôi trồng thủy sản, nghiên cứu đã xây dựng một hệ thống Dashboard tương tác dựa trên nền tảng web. Hệ thống được phát triển bằng framework Streamlit, một công cụ mã nguồn mở chuyên biệt cho việc xây dựng các ứng dụng khoa học dữ liệu và học máy với giao diện người dùng trực quan.
+
+Kiến trúc của hệ thống được thiết kế theo mô hình ba tầng (Three-tier Architecture):
+\begin{itemize}
+    \item \textbf{Tầng trình bày (Presentation Layer):} Giao diện web tương tác được render bởi Streamlit, cung cấp các thành phần điều khiển (widgets) để người dùng lựa chọn tham số dự báo và xem kết quả.
+    \item \textbf{Tầng xử lý nghiệp vụ (Business Logic Layer):} Các module Python chuyên biệt thực hiện tính toán dự báo, tính toán HSI và xử lý dữ liệu địa lý.
+    \item \textbf{Tầng dữ liệu (Data Layer):} Các file CSV chứa dữ liệu quan trắc, mô hình đã huấn luyện (file .pkl) và dữ liệu bán kính ảnh hưởng.
+\end{itemize}
+
+Ưu điểm của kiến trúc này nằm ở tính mô-đun hóa (Modularity) và khả năng mở rộng (Scalability). Mỗi thành phần có thể được cập nhật độc lập mà không ảnh hưởng đến toàn bộ hệ thống, đảm bảo tính bền vững trong quá trình bảo trì và nâng cấp.
+
+\vspace{0.5cm}
+\subsubsection{Các thành phần giao diện người dùng}
+
+Hệ thống Dashboard được tổ chức thành các phần chức năng độc lập, mỗi phần phục vụ một mục đích cụ thể trong quy trình ra quyết định:
+
+\textit{1. Phần cấu hình tham số dự báo (Forecast Parameters Configuration)}
+
+Đây là phần đầu tiên mà người dùng tương tác, cho phép thiết lập các tham số đầu vào cho quá trình dự báo:
+\begin{itemize}
+    \item \textbf{Lựa chọn đối tượng nuôi trồng:} Người dùng có thể chọn giữa "Cá giò" (cobia) hoặc "Hàu" (oyster). Mỗi lựa chọn sẽ kích hoạt một bộ mô hình dự báo và ngưỡng HSI tương ứng, phản ánh sự khác biệt về yêu cầu sinh thái giữa hai loài.
+    \item \textbf{Thiết lập thời gian dự báo:} Bao gồm năm bắt đầu (từ 2026 đến 2030), quý bắt đầu (1-4) và số lượng quý cần dự báo (1-20 quý). Các ràng buộc này đảm bảo tính hợp lệ của dữ liệu đầu vào và ngăn chặn các truy vấn không khả thi.
+\end{itemize}
+
+\textit{2. Phần bản đồ tương tác (Interactive Map Section)}
+
+Bản đồ địa lý là thành phần trung tâm của Dashboard, được xây dựng dựa trên thư viện Folium - một công cụ Python chuyên biệt để tạo bản đồ web tương tác. Bản đồ sử dụng nền ảnh vệ tinh (Satellite Imagery) từ dịch vụ Esri World Imagery, cung cấp hình ảnh độ phân giải cao giúp người dùng nhận diện chính xác vị trí các trạm quan trắc và vùng nuôi trồng.
+
+Các thành phần được tích hợp trên bản đồ bao gồm:
+\begin{itemize}
+    \item \textbf{Điểm đánh dấu trạm quan trắc (Station Markers):} Mỗi trạm được biểu diễn bằng một điểm tròn (CircleMarker) có màu sắc động phản ánh mức độ HSI. Hệ thống mã màu được thiết kế theo nguyên tắc trực quan:
+    \begin{itemize}
+        \item Màu xanh lá cây ($\textcolor{green!60!black}{\bullet}$): HSI $\ge 0.85$ (Rất phù hợp)
+        \item Màu vàng cam ($\textcolor{orange}{\bullet}$): $0.75 \le$ HSI $< 0.85$ (Phù hợp)
+        \item Màu cam ($\textcolor{orange!80!red}{\bullet}$): $0.50 \le$ HSI $< 0.75$ (Ít phù hợp)
+        \item Màu đỏ ($\textcolor{red}{\bullet}$): HSI $< 0.50$ (Không phù hợp)
+    \end{itemize}
+    \item \textbf{Vùng ảnh hưởng không gian (Spatial Influence Zones):} Mỗi trạm được bao quanh bởi một vòng tròn màu xanh dương trong suốt, biểu thị bán kính ảnh hưởng $R_i$ (tính bằng kilômét) đã được tính toán từ phương pháp phân tích suy giảm tương đồng sinh thái. Vùng này cho biết phạm vi không gian mà kết quả dự báo của trạm có thể được áp dụng một cách đáng tin cậy.
+    \item \textbf{Thông tin popup và tooltip:} Khi người dùng di chuột (hover) hoặc click vào một điểm đánh dấu, một cửa sổ popup hiển thị thông tin chi tiết bao gồm: tên trạm, tọa độ địa lý (vĩ độ, kinh độ), giá trị HSI, mức đánh giá và bán kính áp dụng.
+\end{itemize}
+
+\textit{3. Phần tính toán HSI chi tiết (Detailed HSI Calculation)}
+
+Phần này cho phép người dùng thực hiện phân tích sâu cho một trạm quan trắc cụ thể. Hệ thống cung cấp:
+\begin{itemize}
+    \item \textbf{Công cụ tìm kiếm trạm:} Thanh tìm kiếm cho phép người dùng nhập mã trạm hoặc tên trạm để nhanh chóng định vị trạm mong muốn.
+    \item \textbf{Danh sách lựa chọn trạm:} Dropdown menu hiển thị danh sách tất cả các trạm quan trắc, được sắp xếp theo thứ tự số để dễ dàng tra cứu.
+    \item \textbf{Nút kích hoạt tính toán:} Khi người dùng click vào nút "Tính HSI", hệ thống sẽ thực thi quy trình dự báo đầy đủ cho trạm đã chọn.
+\end{itemize}
+
+\vspace{0.5cm}
+\subsubsection{Cơ chế tính toán và hiển thị kết quả}
+
+\textbf{a. Quy trình xử lý dữ liệu theo yêu cầu người dùng}
+
+Khi người dùng thiết lập các tham số và chọn trạm, hệ thống thực hiện một chuỗi các bước xử lý tuần tự:
+
+\textit{Bước 1: Truy xuất tọa độ trạm}
+Hệ thống tra cứu tọa độ VN-2000 ($X_i, Y_i$) của trạm đã chọn từ cơ sở dữ liệu. Tọa độ này được chuyển đổi sang hệ tọa độ địa lý WGS84 (vĩ độ, kinh độ) bằng hàm chuyển đổi tọa độ địa lý để hiển thị trên bản đồ.
+
+\textit{Bước 2: Gọi mô hình dự báo}
+Hàm \texttt{predict\_for\_station()} được gọi với các tham số:
+\begin{equation}
+    \mathbf{Y}_{forecast} = M_{finetuned}(\mathbf{X}_{input})
+\end{equation}
+trong đó $\mathbf{X}_{input}$ là vector đặc trưng được xây dựng từ dữ liệu lịch sử của trạm (bao gồm các biến trễ Lag 1, Lag 4 và biến thời gian Quarter), và $\mathbf{Y}_{forecast}$ là vector dự báo chứa 11 chỉ số môi trường cho $n$ quý tương lai.
+
+\textit{Bước 3: Tính toán HSI}
+Vector dự báo $\mathbf{Y}_{forecast}$ được đưa vào hàm \texttt{compute\_hsi()} để tính toán chỉ số HSI cho từng quý. Hàm này áp dụng các công thức đánh giá mức độ phù hợp sinh học đã được trình bày trong phần trước, tạo ra một cột \texttt{HSI} và một cột \texttt{HSI\_Level} (phân loại mức độ phù hợp) trong DataFrame kết quả.
+
+\textit{Bước 4: Tích hợp thông tin bán kính ảnh hưởng}
+Hệ thống tra cứu bán kính ảnh hưởng $R_i$ tương ứng với trạm, quý và năm đã chọn từ file CSV chứa dữ liệu bán kính đã được tính toán trước. Thông tin này được gắn vào mỗi dòng dự báo để người dùng biết phạm vi áp dụng kết quả.
+
+\textbf{b. Hiển thị kết quả dưới dạng đa phương thức (Multi-modal Visualization)}
+
+Để tối ưu hóa trải nghiệm người dùng, kết quả được trình bày qua ba tab riêng biệt, mỗi tab phục vụ một mục đích phân tích khác nhau:
+
+\textit{Tab 1: Biểu đồ HSI (HSI Trend Chart)}
+
+Biểu đồ đường (Line Chart) được xây dựng bằng thư viện Plotly, hiển thị xu hướng biến đổi HSI qua các quý dự báo. Biểu đồ được bổ sung ba đường ngưỡng (threshold lines) dạng nét đứt:
+\begin{itemize}
+    \item Đường ngưỡng "Rất phù hợp" tại HSI = 0.85 (màu xanh lá)
+    \item Đường ngưỡng "Phù hợp" tại HSI = 0.75 (màu cam)
+    \item Đường ngưỡng "Ít phù hợp" tại HSI = 0.50 (màu đỏ)
+\end{itemize}
+
+Các đường ngưỡng này giúp người dùng nhanh chóng nhận diện các quý có điều kiện môi trường thuận lợi hoặc bất lợi cho nuôi trồng. Ngoài ra, biểu đồ hiển thị ba chỉ số thống kê quan trọng: HSI trung bình, HSI thấp nhất và HSI cao nhất trong chuỗi dự báo.
+
+\textit{Tab 2: Biểu đồ các thông số môi trường (Environmental Parameters Visualization)}
+
+Tab này cung cấp cái nhìn chi tiết về từng chỉ số môi trường riêng lẻ. Người dùng có thể lựa chọn các thông số muốn xem thông qua hộp chọn đa lựa chọn (multiselect). Hệ thống tự động tạo một lưới biểu đồ con (subplot grid) với 2 cột, mỗi biểu đồ con hiển thị xu hướng biến đổi của một thông số theo thời gian.
+
+Các thông số được hỗ trợ bao gồm: Nhiệt độ, Độ mặn, Oxy hòa tan (DO), pH, Độ đục (Turbidity), Chlorophyll-a, Amoni (NH$_4^+$), Nitrat (NO$_3^-$), và Phosphat (PO$_4^{3-}$). Dưới mỗi nhóm biểu đồ, một bảng thống kê hiển thị các chỉ số mô tả (trung bình, min, max, độ lệch chuẩn) cho các thông số đã chọn, giúp người dùng có cái nhìn tổng quan về phân phối giá trị.
+
+\textit{Tab 3: Bảng dữ liệu chi tiết (Detailed Data Table)}
+
+Tab cuối cùng trình bày toàn bộ kết quả dự báo dưới dạng bảng dữ liệu có cấu trúc, bao gồm các cột: Thời gian (Quý/Năm), HSI, Đánh giá, và Bán kính áp dụng (km). Bảng được định dạng với các cấu hình cột (column configuration) để đảm bảo hiển thị số liệu chính xác (ví dụ: HSI hiển thị 3 chữ số thập phân, bán kính hiển thị 1 chữ số thập phân).
+
+\vspace{0.5cm}
+\subsubsection{Tối ưu hóa hiệu năng và trải nghiệm người dùng}
+
+\textbf{a. Cơ chế xử lý song song (Parallel Processing)}
+
+Một thách thức kỹ thuật quan trọng trong việc xây dựng Dashboard là thời gian tính toán. Khi người dùng yêu cầu hiển thị HSI cho tất cả các trạm trên bản đồ, hệ thống cần thực hiện hàng chục đến hàng trăm lần gọi mô hình dự báo. Nếu xử lý tuần tự (sequential processing), thời gian chờ có thể lên tới vài phút, gây trải nghiệm người dùng kém.
+
+Để giải quyết vấn đề này, nghiên cứu áp dụng kỹ thuật xử lý song song đa luồng (Multi-threading) thông qua lớp \texttt{ThreadPoolExecutor} của Python. Cơ chế hoạt động như sau:
+
+\begin{itemize}
+    \item \textbf{Phân chia tác vụ:} Danh sách các trạm cần tính toán được chia thành các nhóm nhỏ.
+    \item \textbf{Thực thi song song:} Mỗi nhóm được gán cho một luồng xử lý (thread) độc lập. Tối đa 4 luồng được chạy đồng thời (max\_workers=4) để tránh quá tải bộ nhớ và CPU.
+    \item \textbf{Tổng hợp kết quả:} Sau khi tất cả các luồng hoàn thành, kết quả được gom lại (aggregate) thành một từ điển (dictionary) chứa HSI của tất cả các trạm.
+\end{itemize}
+
+Kỹ thuật này giúp giảm thời gian tính toán từ vài phút xuống còn vài chục giây, đảm bảo Dashboard phản hồi nhanh chóng và mượt mà.
+
+\textbf{b. Cơ chế lưu trữ tạm thời (Caching Mechanism)}
+
+Streamlit cung cấp decorator \texttt{@st.cache\_data} cho phép lưu trữ kết quả của các hàm tính toán tốn kém. Nghiên cứu áp dụng cơ chế này cho hai hàm quan trọng:
+
+\begin{itemize}
+    \item \textbf{Hàm \texttt{load\_data()}:} Đọc và xử lý dữ liệu quan trắc từ file CSV, bao gồm chuyển đổi tọa độ VN-2000 sang WGS84. Kết quả được cache để tránh phải thực hiện lại quá trình chuyển đổi tọa độ tốn thời gian mỗi khi người dùng tương tác với giao diện.
+    \item \textbf{Hàm \texttt{load\_radius\_data()}:} Đọc dữ liệu bán kính ảnh hưởng từ file CSV. Dữ liệu này không thay đổi trong suốt phiên làm việc, do đó việc cache giúp tăng tốc độ truy xuất.
+\end{itemize}
+
+Cơ chế cache hoạt động dựa trên việc so sánh hash của các tham số đầu vào. Nếu tham số không thay đổi, hàm sẽ trả về kết quả đã lưu thay vì thực thi lại, tiết kiệm đáng kể thời gian và tài nguyên tính toán.
+
+\textbf{c. Tương tác động giữa bản đồ và giao diện (Dynamic Map-Interface Interaction)}
+
+Hệ thống được thiết kế để tạo ra sự tương tác mượt mà giữa bản đồ và các thành phần giao diện khác. Khi người dùng click vào một điểm đánh dấu trên bản đồ:
+
+\begin{enumerate}
+    \item Hệ thống xác định trạm gần nhất với vị trí click bằng cách tính khoảng cách Euclid giữa tọa độ click và tọa độ của tất cả các trạm.
+    \item Trạm được chọn được lưu vào session state (trạng thái phiên làm việc) của Streamlit.
+    \item Giao diện tự động cập nhật: Dropdown menu chọn trạm được điều chỉnh để hiển thị trạm vừa được chọn, và nếu người dùng đã bật tính toán HSI, kết quả sẽ được hiển thị ngay lập tức.
+\end{enumerate}
+
+Cơ chế này tạo ra trải nghiệm người dùng liền mạch, cho phép người dùng khám phá dữ liệu một cách trực quan thông qua bản đồ thay vì phải nhập mã trạm thủ công.
+
+\vspace{0.5cm}
+\subsubsection{Ý nghĩa thực tiễn và khả năng ứng dụng}
+
+Hệ thống Dashboard được thiết kế không chỉ là công cụ hiển thị kết quả, mà còn là một nền tảng hỗ trợ quyết định thực tiễn cho các bên liên quan trong ngành nuôi trồng thủy sản:
+
+\begin{itemize}
+    \item \textbf{Đối với người nuôi trồng:} Dashboard cung cấp thông tin dự báo dễ hiểu và trực quan, giúp họ lập kế hoạch mùa vụ, chọn thời điểm thả giống tối ưu và chuẩn bị các biện pháp ứng phó khi điều kiện môi trường bất lợi.
+    \item \textbf{Đối với cơ quan quản lý:} Hệ thống hỗ trợ công tác quy hoạch vùng nuôi trồng, xác định các khu vực có tiềm năng phát triển và các khu vực cần giám sát chặt chẽ.
+    \item \textbf{Đối với nhà nghiên cứu:} Dashboard cung cấp giao diện để khám phá và phân tích dữ liệu, hỗ trợ các nghiên cứu tiếp theo về mối quan hệ giữa môi trường và nuôi trồng thủy sản.
+\end{itemize}
+
+Tóm lại, hệ thống Dashboard và bản đồ dự báo đóng vai trò là cầu nối quan trọng giữa các kết quả nghiên cứu khoa học và ứng dụng thực tiễn, góp phần nâng cao hiệu quả và tính bền vững của hoạt động nuôi trồng thủy sản tại vùng biển Quảng Ninh.

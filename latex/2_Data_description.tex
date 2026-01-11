@@ -1,0 +1,233 @@
+\section{Xử lý dữ liệu}
+\subsection{Bộ tiêu chí cho cá giò và hàu}
+
+Dự án sử dụng 2 bộ tiêu chí đánh giá mức độ an toàn và thích hợp cho nuôi hàu Thái Bình Dương và cá giò. Các ngưỡng được tổng hợp dựa trên quy chuẩn kỹ thuật quốc gia về chất lượng môi trường nước biển (QCVN 10-MT:2015/BTNMT) kết hợp với các đặc tính sinh học đặc trưng của từng loài. Những thông số này được sử dụng làm cơ sở để chuẩn hóa các biến môi trường trong quá trình tính toán chỉ số phù hợp sinh cảnh (HSI), qua đó đánh giá mức độ thuận lợi của môi trường nuôi theo không gian và thời gian.
+
+
+\begin{table}[H]
+\centering
+\caption{Ngưỡng an toàn môi trường cho nuôi hàu Thái Bình Dương}
+\label{tab:hsi_oyster}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|l|c|c|l|}
+\hline
+\textbf{TT} & \textbf{Thông số} & \textbf{Đơn vị} & \textbf{Ngưỡng phù hợp} & \textbf{Chuẩn so sánh} \\
+\hline
+1  & Ôxy hòa tan (DO)      & mg/l        & $\geq 5$        & QCVN 10-MT:2015/BTNMT \\
+2  & Nhiệt độ thích hợp   & $^\circ$C   & 20 -- 28        & Đặc tính sinh học hàu \\
+3  & pH                   & --          & 7.5 -- 8.0      & Đặc tính sinh học hàu \\
+4  & Độ mặn               & ‰           & 20 -- 25        & Đặc tính sinh học hàu \\
+5  & Độ kiềm              & mg/l        & 60 -- 180       & QCVN 10-MT:2015/BTNMT \\
+6  & Độ trong             & cm          & 20 -- 50        & nt \\
+7  & NH$_3$               & mg/l        & $< 0.3$        & nt \\
+8  & H$_2$S               & mg/l        & $< 0.05$       & nt \\
+9  & Nhiệt độ             & $^\circ$C   & 18 -- 33        & nt \\
+10 & BOD$_5$(20$^\circ$C) & mg/l        & $\leq 50$      & nt \\
+11 & COD                  & mg/l        & $\leq 150$     & nt \\
+12 & Coliform             & MPN/100ml   & $\leq 5000$    & nt \\
+13 & TSS                  & mg/l        & $\leq 50$      & nt \\
+14 & CN$^-$               & mg/l        & $\leq 0.1$     & nt \\
+15 & As                   & mg/l        & $\leq 0.02$    & nt \\
+16 & Cd                   & mg/l        & $\leq 0.005$   & nt \\
+17 & Pb                   & mg/l        & $\leq 0.05$    & nt \\
+18 & Cu                   & mg/l        & $\leq 0.2$     & nt \\
+19 & Hg                   & mg/l        & $\leq 0.001$   & nt \\
+20 & Zn                   & mg/l        & $\leq 0.5$     & nt \\
+21 & Tổng Cr              & mg/l        & $\leq 0.1$     & nt \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Ngưỡng an toàn môi trường cho nuôi cá giò}
+\label{tab:hsi_cobia}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|l|c|c|l|}
+\hline
+\textbf{TT} & \textbf{Thông số} & \textbf{Đơn vị} & \textbf{Ngưỡng phù hợp} & \textbf{Chuẩn so sánh} \\
+\hline
+1  & Ôxy hòa tan (DO)      & mg/l        & $\geq 6$        & QCVN 10-MT:2015/BTNMT \\
+2  & Nhiệt độ thích hợp   & $^\circ$C   & 24 -- 28        & Đặc tính sinh học cá giò \\
+3  & pH                   & --          & 8.0 -- 8.5      & Đặc tính sinh học cá giò \\
+4  & Độ mặn               & ‰           & 27 -- 33        & Đặc tính sinh học cá giò \\
+5  & Độ kiềm              & mg/l        & 60 -- 180       & QCVN 10-MT:2015/BTNMT \\
+6  & Độ trong             & cm          & 20 -- 50        & nt \\
+7  & NH$_3$               & mg/l        & $\leq 0.1$     & nt \\
+8  & PO$_4^{3-}$          & mg/l        & $\leq 0.2$     & nt \\
+9  & Nhiệt độ             & $^\circ$C   & 20 -- 33        & nt \\
+10 & BOD$_5$(20$^\circ$C) & mg/l        & $\leq 50$      & nt \\
+11 & COD                  & mg/l        & $\leq 150$     & nt \\
+12 & Coliform             & MPN/100ml   & $\leq 5000$    & nt \\
+13 & TSS                  & mg/l        & $\leq 50$      & nt \\
+14 & CN$^-$               & mg/l        & $\leq 0.1$     & nt \\
+15 & As                   & mg/l        & $\leq 0.02$    & nt \\
+16 & Cd                   & mg/l        & $\leq 0.005$   & nt \\
+17 & Pb                   & mg/l        & $\leq 0.05$    & nt \\
+18 & Cu                   & mg/l        & $\leq 0.2$     & nt \\
+19 & Hg                   & mg/l        & $\leq 0.001$   & nt \\
+20 & Zn                   & mg/l        & $\leq 0.5$     & nt \\
+21 & Tổng Cr              & mg/l        & $\leq 0.1$     & nt \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\subsection{HK Dataset}
+
+\subsubsection{Cấu trúc bộ dữ liệu và nguồn dữ liệu}
+
+Bộ dữ liệu HK được tổ chức theo cấu trúc thư mục phân vùng không gian, phản ánh các khu vực ven biển khác nhau của Hồng Kông. Mỗi thư mục tương ứng với một vùng quan trắc cụ thể, bao gồm dữ liệu chất lượng nước biển và dữ liệu trầm tích biển.
+
+Cụ thể, bộ dữ liệu bao gồm các thư mục chính như sau:
+\begin{itemize}
+    \item \textbf{North Western}
+    \item \textbf{Southern}
+    \item \textbf{Western Buffer}
+    \item \textbf{Eastern Buffer}
+    \item \textbf{Victoria Harbour}
+    \item \textbf{Mirs Bay}
+    \item \textbf{Port Shelter}
+    \item \textbf{Junk Bay}
+\end{itemize}
+
+Mỗi thư mục khu vực chứa hai tệp dữ liệu dạng CSV, các file dữ liệu được tổ chức theo quý với các đặc trưng về chất lượng nước biển:
+\begin{itemize}
+    \item \texttt{marine\_water\_quality.csv}: dữ liệu chất lượng nước biển, bao gồm các thông số vật lý, hóa học và sinh học như oxy hòa tan, nhiệt độ, độ mặn, pH, các chất dinh dưỡng, chất hữu cơ và vi sinh.
+    \item \texttt{marine\_sedi\_quality.csv}: dữ liệu chất lượng trầm tích biển, phản ánh tình trạng tích tụ kim loại nặng và các chất ô nhiễm trong trầm tích.
+\end{itemize}
+
+Trong dự án này, chỉ dữ liệu từ các tệp \texttt{marine\_water\_quality.csv} được sử dụng để xây dựng mô hình phục vụ bài toán dự báo chất lượng nước cho hai đối tượng nuôi trồng chính là hàu (oyster) và cá giò (cobia) do chứa các trường dữ liệu liên quan trực tiếp đến bộ tiêu chí của hai đối tượng nuôi trồng. Dữ liệu trầm tích (\texttt{marine\_sedi\_quality.csv}) không được đưa vào mô hình, nhưng được giữ lại nhằm phục vụ khả năng mở rộng nghiên cứu trong tương lai.
+
+\subsubsection{Chuẩn hóa và làm sạch dữ liệu}
+
+Do dữ liệu được tổng hợp từ nhiều nguồn và nhiều đợt quan trắc khác nhau, bước đầu tiên trong quy trình xử lý là chuẩn hóa cấu trúc dữ liệu. Tên các cột được đưa về dạng chuẩn bằng cách chuyển sang chữ thường, loại bỏ ký tự đặc biệt và thay thế khoảng trắng bằng dấu gạch dưới. Các cột quan trọng như ngày đo, trạm đo và độ sâu được đổi tên thống nhất để thuận tiện cho việc xử lý tiếp theo.
+
+Các giá trị đo được trong dữ liệu gốc có thể chứa các ký hiệu đặc biệt biểu thị giới hạn phát hiện, chẳng hạn như \texttt{<0.01}. Đối với các trường hợp này, giá trị được xử lý bằng cách lấy một nửa ngưỡng phát hiện tương ứng. Cụ thể, nếu một giá trị có dạng \texttt{<x}, thì giá trị số được gán bằng $x/2$. Các giá trị không thể chuyển đổi sang dạng số được gán là giá trị khuyết (\texttt{NaN}).
+
+\subsubsection{Tổng hợp dữ liệu theo thời gian}
+
+Sau khi làm sạch dữ liệu, các bản ghi được chuyển đổi sang dạng chuỗi thời gian bằng cách trích xuất thông tin tháng và quý từ cột thời gian. Dữ liệu được tổng hợp theo hai bước:
+\begin{itemize}
+    \item Tổng hợp trung bình theo tháng cho mỗi trạm quan trắc.
+    \item Từ dữ liệu theo tháng, tiếp tục tổng hợp trung bình theo quý.
+\end{itemize}
+
+Quy trình này giúp giảm nhiễu ngắn hạn và làm nổi bật xu hướng biến động môi trường theo thời gian, đồng thời phù hợp với bài toán dự báo trung hạn.
+
+\subsubsection{Chuẩn hóa lược đồ thuộc tính}
+
+Sau bước tổng hợp, dữ liệu được ánh xạ về một lược đồ thuộc tính chuẩn gồm 21 biến môi trường. Các biến có sẵn trong dữ liệu HK được ánh xạ trực tiếp sang các trường tương ứng, trong khi các biến không có trong dữ liệu gốc được khởi tạo với giá trị khuyết.
+
+Bộ biến cuối cùng bao gồm các thông số như DO, Temperature, pH, Salinity, NH$_3$, PO$_4$, BOD$_5$, TSS, Coliform, cùng một số biến môi trường bổ sung như Alkalinity, Transparency, H$_2$S và COD.
+
+\subsubsection{Bổ sung dữ liệu tổng hợp}
+
+Đối với một số biến quan trọng nhưng không có sẵn trong dữ liệu HK, nghiên cứu này sử dụng dữ liệu tổng hợp nhằm đảm bảo đầy đủ bộ biến đầu vào cho mô hình dự báo. Cụ thể:
+\begin{itemize}
+    \item Nồng độ H$_2$S được sinh ngẫu nhiên theo phân phối log-normal và được chặn trong khoảng giá trị hợp lý đối với môi trường nước.
+    \item Độ kiềm (Alkalinity) được sinh theo phân phối chuẩn cắt ngưỡng (truncated normal) nhằm phản ánh phạm vi giá trị thực tế.
+    \item Độ trong (Transparency) và COD được sinh theo phân phối log-normal, phù hợp với đặc điểm lệch phải của các biến môi trường này.
+\end{itemize}
+
+Các tham số phân phối được lựa chọn dựa trên giá trị trung bình và độ lệch chuẩn thường gặp trong các nghiên cứu môi trường nước, nhằm đảm bảo tính hợp lý của dữ liệu tổng hợp.
+
+\subsubsection{Tạo bộ dữ liệu cuối cùng}
+
+Dựa trên độ sâu quan trắc, dữ liệu được chia thành hai bộ riêng biệt:
+\begin{itemize}
+    \item Bộ dữ liệu cá giò (cobia), sử dụng các bản ghi ở tầng trung.
+    \item Bộ dữ liệu hàu (oyster), sử dụng các bản ghi ở tầng mặt.
+\end{itemize}
+
+Mỗi bộ dữ liệu được lưu dưới dạng tệp CSV theo quý với 21 biến môi trường, sẵn sàng cho các bước xây dựng đặc trưng và huấn luyện mô hình dự báo.
+
+
+
+
+\subsection{Bộ dữ liệu môi trường biển Việt Nam}
+
+\subsubsection{Cấu trúc bộ dữ liệu và nguồn dữ liệu}
+
+Bộ dữ liệu môi trường biển Việt Nam được thu thập từ các trạm quan trắc chất lượng nước biển ven bờ tại khu vực Quảng Ninh, phản ánh tình trạng môi trường nước biển tại một trong những vùng nuôi trồng thủy sản quan trọng của Việt Nam. Dữ liệu được tổ chức trong tệp Excel \texttt{Tong-hop.xlsx}, với cấu trúc phân tách theo năm từ 2021 đến 2024, mỗi năm tương ứng với một sheet riêng biệt.
+
+Dữ liệu bao gồm các thông số môi trường được quan trắc theo quý tại 99 trạm quan trắc khác nhau, được ký hiệu bằng mã KHM (Khu vực Hải Môn) hoặc NB (Nước Biển). Mỗi bản ghi chứa thông tin về vị trí quan trắc, mã trạm, thời gian quan trắc (theo quý), cùng với các thông số vật lý, hóa học và sinh học của nước biển.
+
+Các thông số môi trường trong bộ dữ liệu bao gồm:
+\begin{itemize}
+    \item \textbf{Thông số vật lý}: Nhiệt độ, độ mặn, pH, độ trong (Transparency)
+    \item \textbf{Thông số hóa học}: Oxy hòa tan (DO), amoni (NH$_3$), phosphat (PO$_4$), tổng chất rắn lơ lửng (TSS), tổng dầu mỡ khoáng (COD), tổng xianua (CN)
+    \item \textbf{Kim loại nặng}: Asen (As), Cadimi (Cd), Chì (Pb), Đồng (Cu), Thủy ngân (Hg), Kẽm (Zn), Tổng Crom (Total\_Cr)
+    \item \textbf{Thông số sinh học}: Coliform
+\end{itemize}
+
+Bộ dữ liệu này được sử dụng để xây dựng và fine-tune mô hình dự báo chất lượng nước cho nuôi trồng thủy sản, đặc biệt là cá giò và hàu, phù hợp với điều kiện môi trường biển Việt Nam.
+
+\subsubsection{Gộp và sắp xếp dữ liệu}
+
+Do dữ liệu được tổ chức theo các sheet riêng biệt cho từng năm, bước đầu tiên trong quy trình xử lý là gộp dữ liệu từ các sheet năm 2021, 2022, 2023 và 2024 thành một bộ dữ liệu thống nhất. Quá trình này được thực hiện bằng cách:
+
+\begin{itemize}
+    \item Tự động nhận diện các sheet tương ứng với từng năm dựa trên tên sheet (tìm kiếm pattern năm 20XX)
+    \item Đọc dữ liệu từ mỗi sheet với header nằm ở dòng thứ hai (row index = 1)
+    \item Gán nhãn năm tương ứng cho mỗi bản ghi dựa trên sheet nguồn
+    \item Trích xuất số quý từ cột "Quý" (ví dụ: "Quý 1", "Quý 2") và số trạm từ cột "KHM" (ví dụ: "NB1", "NB2")
+\end{itemize}
+
+Sau khi gộp, dữ liệu được sắp xếp theo thứ tự ưu tiên: trạm quan trắc (giữ nguyên thứ tự như trong dữ liệu năm 2021), số trạm (NB1, NB2, ...), năm, và quý. Quy trình sắp xếp này đảm bảo tính nhất quán về không gian và thời gian, tạo điều kiện thuận lợi cho việc phân tích xu hướng và xây dựng mô hình dự báo.
+
+Các dòng dữ liệu không hợp lệ, chẳng hạn như dòng chứa thông tin quy chuẩn (QCVN) hoặc các dòng trống, được loại bỏ trong quá trình xử lý. Đối với các ô được merge trong cột "Vị trí quan trắc", giá trị được điền xuống (forward fill) để đảm bảo mỗi bản ghi đều có thông tin vị trí quan trắc đầy đủ.
+
+\subsubsection{Xử lý giá trị left-censored}
+
+Trong quá trình quan trắc môi trường, một số giá trị đo được có thể nằm dưới ngưỡng phát hiện (Limit of Detection - LOD) của thiết bị phân tích, được ký hiệu dưới dạng \texttt{<x} (ví dụ: \texttt{<0.01}, \texttt{<0.005}). Các giá trị này được gọi là left-censored data, đòi hỏi xử lý đặc biệt để có thể sử dụng trong các mô hình phân tích định lượng.
+
+Nghiên cứu này áp dụng phương pháp half-detection limit để xử lý các giá trị left-censored. Cụ thể, nếu một giá trị có dạng \texttt{<x}, thì giá trị số được gán bằng $x/2$. Phương pháp này được sử dụng phổ biến trong các nghiên cứu môi trường do tính đơn giản và phù hợp với giả định rằng các giá trị dưới ngưỡng phát hiện có khả năng phân bố đều trong khoảng $[0, x]$, với giá trị trung bình là $x/2$.
+
+Quá trình xử lý được áp dụng cho các cột chứa thông số môi trường số, bao gồm các kim loại nặng, chất dinh dưỡng và các thông số hóa học khác. Các giá trị không thể chuyển đổi sang dạng số được gán là giá trị khuyết (\texttt{NaN}) và được xử lý ở các bước tiếp theo.
+
+\subsubsection{Chuẩn hóa lược đồ thuộc tính}
+
+Sau khi gộp và xử lý giá trị left-censored, dữ liệu được chuẩn hóa về một lược đồ thuộc tính thống nhất để đảm bảo tính tương thích với mô hình dự báo và dữ liệu HK. Quá trình chuẩn hóa bao gồm:
+
+\begin{itemize}
+    \item \textbf{Đổi tên cột}: Các tên cột tiếng Việt được ánh xạ sang tên tiếng Anh chuẩn, ví dụ: "KHM" $\rightarrow$ "Station", "Quý" $\rightarrow$ "Quarter", "Nhiệt độ" $\rightarrow$ "Temperature", "Độ muối" $\rightarrow$ "Salinity", "Amoni" $\rightarrow$ "NH3", "Phosphat" $\rightarrow$ "PO4", "Độ trong" $\rightarrow$ "Transparency", "Tổng dầu, mỡ khoáng" $\rightarrow$ "COD", "Tổng xianua" $\rightarrow$ "CN"
+    \item \textbf{Lựa chọn biến}: Chỉ giữ lại các cột liên quan trực tiếp đến bộ tiêu chí đánh giá môi trường cho nuôi trồng thủy sản, loại bỏ các cột không cần thiết
+    \item \textbf{Chuẩn hóa định dạng}: Đảm bảo các cột thời gian, số liệu và mã trạm có định dạng nhất quán
+\end{itemize}
+
+Bộ biến cuối cùng sau chuẩn hóa bao gồm 19 thông số môi trường từ dữ liệu gốc, cùng với các biến bổ sung được tạo ở các bước tiếp theo, tổng cộng đạt 21 biến môi trường chuẩn.
+
+\subsubsection{Kết hợp tọa độ địa lý}
+
+Để hỗ trợ phân tích không gian và trực quan hóa dữ liệu trên bản đồ, bộ dữ liệu được kết hợp với thông tin tọa độ địa lý của các trạm quan trắc. Tọa độ được lưu trữ trong hệ tọa độ VN-2000 (hệ tọa độ quốc gia Việt Nam), với các cột X và Y tương ứng với tọa độ phẳng.
+
+Quá trình kết hợp được thực hiện bằng cách merge dữ liệu quan trắc với bảng tọa độ dựa trên mã trạm (Station), sử dụng phép join bên trái (left join) để đảm bảo tất cả các bản ghi quan trắc đều được giữ lại, kể cả những trạm không có thông tin tọa độ. Các tọa độ này có thể được chuyển đổi sang hệ tọa độ WGS84 (lat, lon) khi cần thiết cho việc hiển thị trên bản đồ hoặc tích hợp với các hệ thống GIS.
+
+\subsubsection{Bổ sung dữ liệu tổng hợp}
+
+Để đảm bảo đầy đủ bộ biến đầu vào cho mô hình dự báo, một số biến môi trường quan trọng nhưng không có sẵn trong dữ liệu gốc được bổ sung thông qua phương pháp sinh dữ liệu tổng hợp (synthetic data generation). Các biến này được sinh dựa trên các phân phối thống kê phù hợp với đặc tính của từng thông số môi trường:
+
+\begin{itemize}
+    \item \textbf{H$_2$S}: Được sinh theo phân phối log-normal với giá trị trung bình 0.04 mg/L và độ lệch chuẩn 0.015 mg/L, sau đó được chặn trong khoảng [0.0005, 0.06] mg/L để phản ánh phạm vi giá trị hợp lý trong môi trường nước biển
+    \item \textbf{COD}: Được sinh theo phân phối log-normal với giá trị trung bình 90 mg/L và độ lệch chuẩn 60 mg/L, được chặn trong khoảng [0.5, 220] mg/L
+    \item \textbf{BOD$_5$}: Được sinh theo phân phối log-normal với giá trị trung bình 35 mg/L và độ lệch chuẩn 18 mg/L, được chặn trong khoảng [0.3, 60] mg/L
+    \item \textbf{Alkalinity}: Được sinh theo phân phối chuẩn cắt ngưỡng (truncated normal) với giá trị trung bình 120 mg/L và độ lệch chuẩn 40 mg/L, được chặn trong khoảng [40, 200] mg/L
+\end{itemize}
+
+Việc sử dụng phân phối log-normal cho các biến như H$_2$S, COD và BOD$_5$ phù hợp với đặc điểm lệch phải (right-skewed) thường gặp trong dữ liệu môi trường, trong khi phân phối chuẩn cắt ngưỡng cho Alkalinity phản ánh tính đối xứng và phạm vi giá trị hẹp hơn của thông số này. Các tham số phân phối được lựa chọn dựa trên giá trị trung bình và độ lệch chuẩn thường gặp trong các nghiên cứu môi trường nước biển, nhằm đảm bảo tính hợp lý và tính đại diện của dữ liệu tổng hợp.
+
+Để đảm bảo tính tái lập (reproducibility), quá trình sinh dữ liệu sử dụng seed ngẫu nhiên cố định (seed = 42), cho phép tái tạo lại cùng một bộ dữ liệu tổng hợp khi cần thiết.
+
+\subsubsection{Tạo bộ dữ liệu cuối cùng}
+
+Sau các bước xử lý trên, bộ dữ liệu được lưu dưới dạng tệp CSV với tên \texttt{qn\_env\_clean\_ready.csv}, chứa tổng cộng 1,584 bản ghi từ 99 trạm quan trắc trong giai đoạn 2021-2024, được tổ chức theo quý. Mỗi bản ghi bao gồm:
+
+\begin{itemize}
+    \item Thông tin định danh: Mã trạm (Station), tên trạm (Station\_Name), thời gian quan trắc (Quarter)
+    \item 19 thông số môi trường từ dữ liệu gốc: DO, Temperature, pH, Salinity, NH3, PO4, TSS, Coliform, Transparency, COD, CN, cùng 8 kim loại nặng (As, Cd, Pb, Cu, Hg, Zn, Total\_Cr)
+    \item 4 biến môi trường tổng hợp: H2S, BOD5, Alkalinity, và COD (nếu chưa có trong dữ liệu gốc)
+    \item Thông tin tọa độ: Tọa độ VN-2000 (X, Y)
+\end{itemize}
+
+Bộ dữ liệu cuối cùng đạt tổng cộng 21 biến môi trường, phù hợp với lược đồ thuộc tính chuẩn được sử dụng trong mô hình dự báo, sẵn sàng cho các bước xây dựng đặc trưng, fine-tune mô hình và đánh giá chất lượng môi trường nuôi trồng thủy sản.
